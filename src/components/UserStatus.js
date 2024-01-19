@@ -1,29 +1,11 @@
-// src/components/UserStatus.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase'; // Certifique-se de importar a referência correta para o Firebase
+import { auth } from '../firebase';
+import ConditionalNavLink from './ConditionalNavLink';
 
 const UserStatus = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
- 
-
-  useEffect(() => {
-    // Adiciona um observador de autenticação para verificar mudanças no estado do usuário
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      
-      setUser(user);
-      if(user == null){
-        console.log("Não logado")
-        navigate("/login")
-      }
-    });
-
-    // Limpa o observador quando o componente é desmontado
-    return () => {
-      unsubscribe();
-    };
-  }, []); // Executa o efeito apenas uma vez durante a montagem do componente
 
   const handleLogout = async () => {
     try {
@@ -34,17 +16,46 @@ const UserStatus = () => {
     }
   };
 
+  useEffect(() => {
+    // Adiciona um observador de autenticação para verificar mudanças no estado do usuário
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      if (user == null) {
+        navigate("/login")
+      } else {
+        console.log("logado:" + user.email)
+      }
+
+    });
+
+    // Limpa o observador quando o componente é desmontado
+    return () => {
+      unsubscribe();
+    };
+  }, []); // Executa o efeito apenas uma vez durante a montagem do componente
+
   return (
     <div>
       {user ? (
         <div>
-          <p>Usuário logado: {user.email}</p>
+          <ConditionalNavLink to="/login" condition={false}>
+            Login
+          </ConditionalNavLink>
+
           <button onClick={handleLogout}>Logout</button>
+
         </div>
       ) : (
-        <p>Nenhum usuário logado</p>
+        <div>
+          <ConditionalNavLink to="/login" condition={true}>
+            Login
+          </ConditionalNavLink>
+
+        </div>
       )}
+
     </div>
+
   );
 };
 

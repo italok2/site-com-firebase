@@ -7,11 +7,11 @@ const DrawerMenu = ({ open, onClose }) => {
   return (
     <Drawer anchor="left" open={open} onClose={onClose}>
       <List>
-        <ListItem button component={Link} to="/login">
-          <ListItemText primary="Login" />
+        <ListItem button component={Link} to="cadastro">
+          <ListItemText primary="Pedido" />
         </ListItem>
         <ListItem button component={Link} to="/cadastro">
-          <ListItemText primary="Cadastro" />
+          <ListItemText primary="Produtos" />
         </ListItem>
       </List>
     </Drawer>
