@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { NavLink, useNavigate } from 'react-router-dom';
-import Menu from './Menu';
+import {  useNavigate } from 'react-router-dom';
+import BasicMenu from './BasicMenu';
 
-const Login = () => {
+const Login = ({ user }) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-
+ 
     const onLogin = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
@@ -31,7 +30,7 @@ const Login = () => {
             <main >
                 <section>
                     <div>
-                        <Menu />
+                        <BasicMenu />
 
                         <form>
                             <div>
@@ -70,14 +69,6 @@ const Login = () => {
                                 </button>
                             </div>
                         </form>
-
-                        <p className="text-sm text-white text-center">
-                        ainda não tem conta? {' '}
-                            <NavLink to="/signup">
-                                Cadastre-se
-                            </NavLink>
-                        </p>
-
                     </div>
                 </section>
             </main>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import DrawerMenu from './DrawerMenu';
 import UserStatus from './UserStatus';
 
-const Menu = () => {
+
+const BasicMenu = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const handleDrawerOpen = () => {
@@ -19,24 +19,14 @@ const Menu = () => {
         <div>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        onClick={handleDrawerOpen}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         CamilaFrios
                     </Typography>
-
                 </Toolbar>
             </AppBar>
-            <DrawerMenu open={drawerOpen} onClose={handleDrawerClose} user="italo1" />
+        
         </div>
     )
 }
 
-export default Menu;
+export default BasicMenu;

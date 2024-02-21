@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
-import ConditionalNavLink from './ConditionalNavLink';
+import DrawerMenu from './DrawerMenu';
 
 const UserStatus = () => {
   const [user, setUser] = useState(null);
@@ -22,6 +22,7 @@ const UserStatus = () => {
       setUser(user);
       if (user == null) {
         navigate("/login")
+        console.log("nao logado")
       } else {
         console.log("logado:" + user.email)
       }
@@ -35,27 +36,7 @@ const UserStatus = () => {
   }, []); // Executa o efeito apenas uma vez durante a montagem do componente
 
   return (
-    <div>
-      {user ? (
-        <div>
-          <ConditionalNavLink to="/login" condition={false}>
-            Login
-          </ConditionalNavLink>
-
-          <button onClick={handleLogout}>Logout</button>
-
-        </div>
-      ) : (
-        <div>
-          <ConditionalNavLink to="/login" condition={true}>
-            Login
-          </ConditionalNavLink>
-
-        </div>
-      )}
-
-    </div>
-
+    <DrawerMenu user={user} />
   );
 };
 

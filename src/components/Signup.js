@@ -35,11 +35,11 @@ const Signup = () => {
         <section>
             <div>
                 <div>                  
-                    <h1> FocusApp </h1>                                                                            
+                    <h1> Cadastro de vendedores </h1>                                                                            
                     <form>                                                                                            
                         <div>
                             <label htmlFor="email-address">
-                                Email address
+                                Email:
                             </label>
                             <input
                                 type="email"
@@ -53,7 +53,7 @@ const Signup = () => {
 
                         <div>
                             <label htmlFor="password">
-                                Password
+                                Senha:
                             </label>
                             <input
                                 type="password"
@@ -69,17 +69,10 @@ const Signup = () => {
                             type="submit" 
                             onClick={onSubmit}                        
                         >  
-                            Sign up                                
+                            Cadastrar                                
                         </button>
                                                                      
-                    </form>
-                   
-                    <p>
-                        Already have an account?{' '}
-                        <NavLink to="/login" >
-                            Sign in
-                        </NavLink>
-                    </p>                   
+                    </form>                 
                 </div>
             </div>
         </section>
